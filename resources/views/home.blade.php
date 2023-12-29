@@ -7,14 +7,23 @@
         <div class="row d-flex justify-content-center">
             <div class="col-12 col-md-10 col-lg-8">
                 <div class="card bg-white shadow-lg">
+                    @if(session('success'))
+                        <div class="alert alert-success alert-block dismissible show fade">
+                            <div class="alert-body">
+                                {{session('success')}}
+                            </div>
+                        </div>
+                    @endif
                     <div class="card-body p-5">
                         <h2 class="fw-bold mb-2 text-uppercase ">Welcome to E-Budgeting!</h2>
                         <p class="mb-3"><i>"Website for managing finances"</i></p>
                         <hr>
                         <h5>Your Balance :</h5>
-                        @if ($data->balance)
+                        @if ($data->balance < 0)
+                            <h2 class="text-danger">Rp {{ $data->value }} ,00</h2>
+                        @elseif ($data->balance > 0)
                             <h2>Rp {{ $data->value }} ,00</h2>
-                        @else
+                        @elseif ($data->balance === null || $data->balance == 0)
                             <h2>Rp 0 ,00</h2>
                         @endif
                         <br>

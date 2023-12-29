@@ -64,7 +64,7 @@ class TransactionController extends Controller
 
     public function history() {
         $id = session('user');
-        $data = Transaction::where('created_by',$id)->paginate(10);
+        $data = Transaction::where('created_by',$id)->orderBy('created_at', 'DESC')->paginate(10);
         foreach ($data as $x => $item) {
             $number = number_format($item->value);
             $data[$x]->balance = str_replace(',', '.', $number);
