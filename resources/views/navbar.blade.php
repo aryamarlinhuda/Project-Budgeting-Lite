@@ -1,7 +1,7 @@
 @extends('component')
 @section('navbar')
 <style>
-    nav {
+    .navbar {
         background-color: #60b7ff
     }
 

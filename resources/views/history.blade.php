@@ -24,6 +24,8 @@
         </li>
         @endforeach
     </ul>
+    <br>
+    {{ $data->links() }}
 </div>
 @if(count($data) === 0)
     <h4 class="text-center text-secondary"><i><b>There is No Transaction yet!</b></i></h4>
