@@ -63,11 +63,13 @@ class AuthController extends Controller
     public function register(Request $request) {
         $request->validate([
             "name" => "required",
+            "photo" => "max:3048",
             "email_or_phone" => "required",
             "password" => "required | min:6",
             "confirm_password" => "required | min:6 | same:password"
         ],[
             "name.required" => "Name is required!",
+            "photo.max" => "Photo must be less than 3 MB!",
             "email_or_phone.required" => "Phone Number or Email is required",
             "password.required" => "Password is required!",
             "password.min" => "Password must contain 6 characters or more",
@@ -78,21 +80,14 @@ class AuthController extends Controller
 
         $file = $request->file('photo');
         if($file) {
-            $request->validate([
-                "photo" => "file | max:3048"
-            ],[
-                "photo.file" => "Photo must be an image file!",
-                "photo.max" => "Photo must be less than 3 MB!"
-            ]);
-
             $format = $file->getClientOriginalExtension();
             if(strtolower($format) === 'jpg' || strtolower($format) === 'jpeg' || strtolower($format) === 'png') {
                 $photo = $request->file('photo')->store('photo');
             } else {
-                return redirect('register')->with('format','The photo format must be jpg, jpeg, or png');
+                return redirect('register')->with('format','The photo format must be jpg, jpeg, or png!');
             }
         } else {
-            $photo = null;
+            $photo = null; 
         }
 
         if (preg_match('/[a-zA-Z]/', $request->email_or_phone)) {

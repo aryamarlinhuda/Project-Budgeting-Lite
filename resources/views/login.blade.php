@@ -39,7 +39,7 @@
                             @csrf
                             <div class="mb-3">
                                 <label for="email" class="form-label ">Email or Phone Number</label>
-                                <input type="email" class="form-control" name="email_or_phone" placeholder="name@example.com or 081*********" value="{{ session('email_or_phone') }}">
+                                <input type="text" class="form-control" name="email_or_phone" placeholder="name@example.com or 081*********" value="{{ session('email_or_phone') }}">
                                 @if ($errors->has('email_or_phone'))
                                     <p class="text-danger fst-italic">{{ $errors->first('email_or_phone') }}</p>
                                 @endif

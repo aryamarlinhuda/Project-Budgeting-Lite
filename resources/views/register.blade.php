@@ -33,7 +33,7 @@
                             </div>
                         </div>
                         @endif
-                        <form action="{{ url('register') }}" method="POST" class="mb-3 mt-md-4">
+                        <form action="{{ url('register') }}" method="POST" class="mb-3 mt-md-4" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
                                 <label for="name" class="form-label ">Name</label>
@@ -43,8 +43,8 @@
                                 @endif
                             </div>
                             <div class="mb-3">
-                                <label for="email" class="form-label ">Photo</label>
-                                <input type="file" class="form-control" name="photo">
+                                <label for="photo" class="form-label">Photo</label>
+                                <input type="file" class="form-control" name="photo" id="photo"/>
                                 <span class="text-secondary"><i>*optional</i></span>
                                 @if ($errors->has('photo'))
                                     <p class="text-danger fst-italic">{{ $errors->first('photo') }}</p>

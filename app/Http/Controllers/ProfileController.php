@@ -67,6 +67,7 @@ class ProfileController extends Controller
         }
 
         $file = $request->file('photo');
+        dd($file);
         if($file) {
             $format = $file->getClientOriginalExtension();
             if(strtolower($format) === 'jpg' || strtolower($format) === 'jpeg' || strtolower($format) === 'png') {
